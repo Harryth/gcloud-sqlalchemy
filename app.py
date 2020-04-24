@@ -19,6 +19,9 @@ app.config.update(
     SQLALCHEMY_DATABASE_URI=os.environ.get('DB_PATH') # Get DB path from env variable
 )
 
+print(os.environ.get('DB_PATH'))
+print(os.environ.get('SECRET_KEY'))
+
 # Seting the JWT authentication process at {url}/auth
 jwt = JWT(app, authenticate, identity)
 
