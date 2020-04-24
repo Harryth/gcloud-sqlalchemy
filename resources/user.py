@@ -1,5 +1,6 @@
 from flask_restful import Resource, reqparse
 
+# Importing the User model DB functions
 from models.user import UserModel
 
 # Create a new resource that will handle petitions (on /hello/ endpoint)
@@ -29,12 +30,15 @@ class User(Resource):
         # Reading data from petition body
         data = cls.parser.parse_args()
 
+        # Finds the user in DB if already exist return error
         if UserModel.find_by_username(data['username']):
             return {'message': 'User already exist'}, 400
 
+        # Creates a new user object from request body payload
         user = UserModel(**data)
 
+        # Saves the new user in DB
         user.save_to_db()
 
-        # Returning a message: Hello {name}!
+        # Returning a message of success!
         return {'message': 'User {} created successfuly.'.format(data['username'])}, 201
