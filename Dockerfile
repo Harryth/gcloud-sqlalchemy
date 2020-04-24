@@ -8,7 +8,7 @@ WORKDIR $APP_HOME
 COPY . ./
 
 # Install production dependencies.
-RUN pip install Flask flask-restful flask-jwt flask-sqlalchemy gunicorn
+RUN pip install Flask flask-restful flask-jwt flask-sqlalchemy PyMySQL gunicorn
 
 # Run the web service on container startup. Here we use the gunicorn
 # webserver, with one worker process and 8 threads.
