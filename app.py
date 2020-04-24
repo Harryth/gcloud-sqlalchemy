@@ -19,11 +19,6 @@ app.config.update(
     SQLALCHEMY_DATABASE_URI=os.environ.get('DB_PATH') # Get DB path from env variable
 )
 
-# ASLAlchemy will create the DB tables before the first request
-@app.before_first_request
-def create_tables():
-    db.create_all()
-
 # Seting the JWT authentication process at {url}/auth
 jwt = JWT(app, authenticate, identity)
 
