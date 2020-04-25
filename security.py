@@ -10,7 +10,7 @@ from models.user import UserModel
 def authenticate(username, password):
     user = UserModel.find_by_username(username) # Finds the user in the DB
 
-    secret = bytes(os.environ.get('SECRET_KEY'), 'utf-8') # Loads secret from enviroment variable
+    secret = bytes(str(os.environ.get('SECRET_KEY')), 'utf-8') # Loads secret from enviroment variable
     user_bytes = bytes(username, 'utf-8') # Converts the username in a bytes array compatible with the hmac funtion
 
     pass_signature = hmac.new(secret, user_bytes, digestmod=hashlib.sha256).hexdigest() #Sign the username + secret and return a hex string
