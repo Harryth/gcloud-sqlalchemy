@@ -16,7 +16,8 @@ api = Api(app)
 app.config.update(
     SECRET_KEY=os.urandom(24), # Setting the JWT secret as a random string
     JWT_EXPIRATION_DELTA=datetime.timedelta(seconds=7200), # Set JWT 'exp' as 2h
-    SQLALCHEMY_DATABASE_URI=os.environ.get('DB_PATH') # Get DB path from env variable
+    #SQLALCHEMY_DATABASE_URI=os.environ.get('DB_PATH') # Get DB path from env variable
+    SQLALCHEMY_DATABASE_URI='mysql+pymysql://user:MicroREC@/testdb?unix_socket=/cloudsql/test-db'
 )
 
 print(os.environ.get('DB_PATH'))
